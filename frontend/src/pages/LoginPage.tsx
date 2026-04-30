@@ -4,13 +4,6 @@ import logo from "../assets/google.svg"
 
 export default function LoginPage() {
 
-    const handleLogin = () => {
-        
-    }
-
-
-
-
     return (
         <div className="flex min-h-screen">
             <div className="min-h-screen flex flex-col text-white shadow-xl bg-[#3D886B] h-full w-[70rem] py-13">
