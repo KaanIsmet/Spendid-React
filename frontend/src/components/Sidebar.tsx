@@ -33,7 +33,7 @@ export default function Sidebar() {
 
     return (
         <div
-            className="fixed left-0 top-0 bottom-0 flex flex-col text-white shadow-xl bg-[#3D886B] h-full w-[20rem]"
+            className="min-h-screen flex flex-col text-white shadow-xl bg-[#3D886B] h-full w-[20rem]"
             >
 
             {/* Logo / App Name */}
