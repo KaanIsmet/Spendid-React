@@ -1,0 +1,15 @@
+@import "tailwindcss";   
+
+@theme {
+  --color-sidebar: #3D886B;
+  --font-sans: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --default-font-family: var(--font-sans);
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+* {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+}
