@@ -68,6 +68,7 @@ export default function SignUpPage() {
                             Start tracking for free, no card needed.
                         </p>
                     </div>
+                    {error && <p className='text-red-500 px-5 py-2'>{error}</p>}
                     <div className="flex flex-col py-5">
                         <label className="text-sm text-white px-5">
                             Username
