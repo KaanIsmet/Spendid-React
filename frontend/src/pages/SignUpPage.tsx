@@ -1,5 +1,4 @@
 import Logo from '../components/Logo';
-import GoogleLogo from '../assets/google.svg';
 import { useState } from 'react';
 
 export default function SignUpPage() {
