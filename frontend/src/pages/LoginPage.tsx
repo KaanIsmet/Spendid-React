@@ -1,6 +1,4 @@
-import Sidebar from "../components/Sidebar";
 import Logo from "../components/Logo";
-
 import logo from "../assets/google.svg"
 
 
