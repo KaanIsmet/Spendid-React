@@ -31,9 +31,7 @@ export default function LoginPage() {
                 const data = await response.json();
                 throw new Error(data.message || 'Login failed');
             }
-            const data = await response.json();
-            const token = data.token;
-            
+
             navigate('/dashboard');
 
         } catch (err) {
