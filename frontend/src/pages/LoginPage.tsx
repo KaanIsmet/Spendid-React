@@ -1,8 +1,47 @@
 import Logo from "../components/Logo";
 import logo from "../assets/google.svg"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, } from 'react-router-dom';
+import { useState } from "react";
 
 export default function LoginPage() {
+    const [ username, setUsername ] = useState('');
+    const [ password, setPassword ] = useState('');
+    const [ error, setError ] = useState('');
+    const [ loading, setLoading ] = useState(false);
+    const navigate = useNavigate();
+
+    const handleLogin = async () => {
+        setError('');
+        setLoading(true);
+        try {
+            const response = await fetch('https://spendid-production.up.railway.app/api/v1/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                    role: "user",
+                    enabled: true
+                })
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.message || 'Login failed');
+            }
+            const data = await response.json();
+            const token = data.token;
+            
+            navigate('/dashboard');
+
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'An error occurred');
+        } finally {
+            setLoading(false);
+        }
+    }
 
     return (
         <div className="flex min-h-screen">
@@ -55,30 +94,40 @@ export default function LoginPage() {
                             Sign in to your account
                         </p>
                     </div>
-                    
+                    {error && <p className='text-red-500 px-5 py-2'>{error}</p>}
                     <div className="flex flex-col py-5">
                         <label className="text-sm text-white px-5">
-                            Email
+                            Username
                         </label>
+                        <input 
                         
-                        <input className="rounded-lg border border-white bg-transparent text-white px-4 py-2 mx-5">
-                        
-                        </input>
+                            className="rounded-lg border border-white bg-transparent text-white px-4 py-2 mx-5"
+                            type="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+
                     </div>
                     <div className="flex flex-col py-5">
                         <label className="text-sm text-white px-5">
                             Password
                         </label>
                         
-                        <input className="rounded-lg border border-white bg-transparent text-white px-4 py-2 mx-5">
-                        
-                        </input>
+                        <input 
+                            className="rounded-lg border border-white bg-transparent text-white px-4 py-2 mx-5"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
                         <a href="" className="text-[#3D886B] px-5 mt-2 ml-auto">
                             Forgot Password?
                         </a>
-                    </div>   
-                    <button className="text-white border border-white rounded-lg px-4 py-2 m-5 w-[70rem]">
-                        Sign up
+                    </div>
+                    <button 
+                        className="text-white border border-white rounded-lg px-4 py-2 m-5 w-[70rem]"
+                        onClick={handleLogin}
+                    >
+                        { loading ? 'Signing in' : 'Sign in'}                       
                     </button>  
                     <div className="flex">
                         <div className="border-t border-white w-[33rem] my-3 mx-5"/>
@@ -86,7 +135,7 @@ export default function LoginPage() {
                         <div className="border-t border-white w-[33rem] my-3 mx-5"/>
                     </div>
                     <button className="text-white border border-white rounded-lg px-4 py-2 m-5 w-[70rem] flex items-center justify-center gap-2">
-                        <img src={logo}/>Continue with Google
+                        <img src={logo}/> Continue with Google
                     </button>  
                     <div className="flex justify-center">
                         <span className="text-white flex justify-center">Don't have an account? </span>
