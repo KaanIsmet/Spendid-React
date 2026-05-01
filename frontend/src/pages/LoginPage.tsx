@@ -1,6 +1,6 @@
 import Logo from "../components/Logo";
 import logo from "../assets/google.svg"
-
+import { Link } from 'react-router-dom';
 
 export default function LoginPage() {
 
@@ -90,7 +90,7 @@ export default function LoginPage() {
                     </button>  
                     <div className="flex justify-center">
                         <span className="text-white flex justify-center">Don't have an account? </span>
-                        <a href="/signup"className="text-[#3D886B] mx-3">Sign up</a>
+                        <Link to={'/signup'} className='text-[#3D886B] mx-3'>Sign up</Link>
                     </div>
                 </div>
             </div>
