@@ -1,5 +1,6 @@
 import Logo from '../components/Logo';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function SignUpPage() {
     const [ username, setUsername] = useState('');
@@ -126,7 +127,7 @@ export default function SignUpPage() {
                     </button>  
                     <div className="flex justify-center">
                         <span className="text-white flex justify-center">Already have an account? </span>
-                        <a href="/"className="text-[#3D886B] mx-3">Sign in</a>
+                        <Link to={'/'} className='text-[#3D886B] mx-3'>Sign in</Link>
                     </div>
                 </div>
             </div>
