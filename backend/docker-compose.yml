@@ -1,0 +1,17 @@
+services:
+  
+  app:
+    image: backend:v1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PORT=8000
+      - DATABASE_URL=""
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    volumes:
+      - ./app:/code/app:rw
